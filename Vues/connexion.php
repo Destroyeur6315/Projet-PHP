@@ -51,7 +51,7 @@
     <div class="login-box">
 
       <h2>Login</h2>
-      <form method="post" action="index.php?action=validationFormulaire" >
+      <form method="post">
 
           <div class="user-box">
             <input type="text" name="txtPseudo">
@@ -63,9 +63,10 @@
             <label>Password</label>
           </div>
 
-          <input class="boutonEnvoie" type="submit" value="Se connecter">
-            <span></span><span></span><span></span><span></span>
-          </input>
+          <input class="boutonEnvoie" type="submit" value="Login">        
+          
+          <!-- action !!!!!!!!!! -->
+          <input type="hidden" name="action" value="validationFormulaire"> 
 
       </form>
 

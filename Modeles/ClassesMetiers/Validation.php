@@ -29,7 +29,7 @@ class Validation{
 
     static function val_ListeTache($chaine, $dataErreur){
         if(! isset($chaine) || $chaine==""){
-            $dataErreur[] = "pas de pseudo référencé";
+            $dataErreur[] = "Veuillez référencé un nom à la liste";
         }
         if(! preg_match('/^[a-zA-Z0-9]{6,12}$/', $chaine)){
             $dataErreur[] = "Veuillez rentrer un pseudo conforme (chiffre et lettre uniquement)";

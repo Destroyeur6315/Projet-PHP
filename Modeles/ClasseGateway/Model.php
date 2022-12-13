@@ -25,15 +25,7 @@ class Model{
         global $dsn, $user, $pass;
 
         $Taches = new TacheGateway(New Connection($dsn, $user, $pass));
-        $nb = 0;
-        $nombreTache = $Taches->getNombreTaches();
-        foreach($nombreTache as $tache){
-            $nb = $tache;
-        }
-
-        echo $nb;
-
-        $result = $Taches->createTache($nb . "m", $description, $idListe);
+        $result = $Taches->createTache($description, $idListe);
 
         return $result;
     }
@@ -71,16 +63,7 @@ class Model{
         global $dsn, $user, $pass;
 
         $Liste = new ListeGateway(New Connection($dsn, $user, $pass));
-
-        $nb = 0;
-        $nombreListe = $Liste->getNombreListe();
-        foreach($nombreListe as $liste){
-            $nb = $liste;
-        }
-
-        echo $nb;
-
-        $result = $Liste->createNewListe($nb . "aaaff", $nomListe);
+        $result = $Liste->createNewListe($nomListe);
 
         return $result;
     }

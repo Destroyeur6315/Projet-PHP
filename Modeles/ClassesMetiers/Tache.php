@@ -6,7 +6,7 @@ class Tache{
     private $description;
     private $idListe;
 
-    public function __construct(String $id, String $description, String $idListe){
+    public function __construct(int $id, String $description, String $idListe){
         $this->id = $id;
         $this->description = $description;
         $this->idListe= $idListe;

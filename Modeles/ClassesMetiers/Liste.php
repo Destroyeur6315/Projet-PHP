@@ -5,7 +5,7 @@ class Liste{
     private $nom;
     private $listeDeTaches = [];
 
-    public function __construct(String $id, String $nom){
+    public function __construct(int $id, String $nom){
         $this->nom = $nom;
         $this->id = $id;
     }

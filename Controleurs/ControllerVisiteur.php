@@ -72,12 +72,25 @@ class ControllerVisiteur{
         global $dsn, $user, $pass;
 
         $model = new Model();
-        $result = $model->insertListe($_POST['nomListe']);
 
-        $tab_tache = $model->get_AllTache();
-        $tab_liste = $model->get_AllListe();
+        $nomListe = $_POST['nomListe'];
 
-        require ($rep.$vues['accueil']);  
+        $dVueEreur = Validation::val_ListeTache($nomListe, $dVueEreur);
+
+        if(! empty($dVueEreur)){
+            $tab_tache = $model->get_AllTache();
+            $tab_liste = $model->get_AllListe();
+
+            require($rep.$vues['accueil']);
+        }
+        else{
+            $result = $model->insertListe($nomListe);
+
+            $tab_tache = $model->get_AllTache();
+            $tab_liste = $model->get_AllListe();
+
+            require($rep.$vues['accueil']);
+        }  
     }
 
     function ajouterTache($dVueEreur){

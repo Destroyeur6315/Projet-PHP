@@ -29,13 +29,46 @@
           </nav>
         </div>
         <div class="site-header__end">
-          <a href="index.php?action=avoirPageConnexion">Sign in</a>
+          <a href="?action=avoirPageConnexion">Sign in</a>
         </div>
       </div>
     </header>
 
+    <!-- Gestion erreur -->
+
+    <div class="erreur" style="background-color: red;">
+
+    <?
+
+    if (isset($dVueEreur) && count($dVueEreur)>0) {
+        echo "<h2>ERREUR</h2>";
+        foreach ($dVueEreur as $value){
+            echo $value;
+            echo "<br>";
+        }
+    }
+
+    ?>
+
+    </div>
+
+    <!-- Formulaire ajout liste -->
+    
+    <div class="BoutonBigContainer">
+        <div class="BoutonContainer">
+            <form method="post" class="formAjoutListe">
+                <label id="icon" for="name"><i class="fas fa-envelope"></i></label>
+                <input name="nomListe" type="text" id="inputAjout"> 
+                <input type="submit" value="create" class="inputAjoutList">
+                
+                <!-- action !!!!!!!!!! -->
+                <input type="hidden" name="action" value="ajouterUneListe">    
+            </form>
+        </div>
+    </div>
 
     <!-- les todolist -->
+
     <div class="containerfirstToDoList">
         <div class="containerToDoList">
         
@@ -43,9 +76,12 @@
                     
                 <div class="MyToDoList">
                     <h1>  <? echo $liste->getNom(); ?> </h1>
-                    <form action="index.php?action=ajouterUneTache&idListe=<? echo $liste->getId() ?>" method="post">
+                    <form action="?idListe=<? echo $liste->getId() ?>" method="post">
                         <input name="NewTache" type="text" placeholder="Add your new todo">
-                        <button type="submit" value="action">Add</button>
+                        <input type="submit" value="add">
+        
+                        <!-- action !!!!!!!!!! -->
+                        <input type="hidden" name="action" value="ajouterUneTache">  
                     </form>
                     
                     <ul class="todoList">
@@ -54,10 +90,13 @@
                                 if($tache->getIdListe() == $liste->getId())
                                 {
                                     ?>
-                                    <form action="index.php?action=supprimerUneTache&idTache=<? echo $tache->getId() ?>" method="post">
+                                    <form action="?idTache=<? echo $tache->getId() ?>" method="post">
                                         <li>   
                                             <? echo $tache->getDescription(); ?> 
-                                            <button type="submit" value="action"> X </button> 
+                                            <input type="submit" value="X">
+        
+                                            <!-- action !!!!!!!!!! -->
+                                            <input type="hidden" name="action" value="supprimerUneTache"> 
                                         </li>
                                     </form> 
                                     
@@ -66,8 +105,11 @@
                         endforeach; ?>
 
                     </ul>
-                    <form action="index.php?action=supprimerUneListe&idListe=<? echo $liste->getId() ?>" method="post"> 
-                        <button type="submit" value="action">Delete the liste</button>
+                    <form action="?idListe=<? echo $liste->getId() ?>" method="post"> 
+                    <input type="submit" value="delete">
+        
+                    <!-- action !!!!!!!!!! -->
+                    <input type="hidden" name="action" value="supprimerUneListe"> 
                     </form>
                 </div>
             <?php endforeach; ?>   
@@ -88,10 +130,13 @@
     <br>
         -->
 
-    <form action="index.php?action=ajouterUneListe" method="post">
+   
+    <!--
+    <form method="post">
         <input name="nomListe" type="text"> 
-        <button type="submit" value="action">Ajouter une liste</button>
+        <input type="submit" name="action" value="ajouterUneListe">
     </form>
+                    -->
 
     <!-- footer -->
 

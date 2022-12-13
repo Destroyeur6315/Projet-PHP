@@ -23,11 +23,11 @@ class ListeGateway {
     }
      
 
-    public function createNewListe($id, $nom){
+    public function createNewListe($nom){
         $query = "INSERT INTO Liste VALUES(:id, :nom)";
 
         $this->con->executeQuery($query, array(
-            ':id' => array($id, PDO::PARAM_STR),
+            ':id' => array(NULL, PDO::PARAM_STR),
             ':nom' => array($nom, PDO::PARAM_STR)
         ));
 

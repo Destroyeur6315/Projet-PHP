@@ -14,11 +14,11 @@ class TacheGateway {
     //public function deleteTache(String $nomDeLaliste, $Nom){}
     //public function modifDescription(String $nom, String $nomDeLaListe, String $nouvelledescription)
 
-    public function createTache(String $id, String $description, String $idListe){
+    public function createTache(String $description, String $idListe){
         $query = "INSERT INTO Tache VALUES(:id, :description, :idListe)";
 
         $this->con->executeQuery($query, array(
-            ':id' => array($id, PDO::PARAM_STR),
+            ':id' => array(NULL, PDO::PARAM_STR),
             ':description' => array($description, PDO::PARAM_STR),
             ':idListe' => array($idListe, PDO::PARAM_STR)
         ));
