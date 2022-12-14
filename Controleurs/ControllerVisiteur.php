@@ -1,12 +1,10 @@
 <?php
 
-//require_once('../Modeles/Modele');
-
 class ControllerVisiteur{
 
-    public $dataVue = array();
-
     public function __construct(){
+
+        global $rep,$vues;
 
         // tableau d'erreurs
         $dVueEreur = array();
@@ -37,9 +35,8 @@ class ControllerVisiteur{
                     $this->seConnecter($dVueEreur);
                     break;
                 default :
-                    $dVueEreur[] = "Erreur d'appel php";
-                    //require ($rep.$vues['vuephp1']);
-                    echo $dVueEreur[0];
+                    $dVueEreur[] = "cette action n'est pas reconnu";
+                    require ($rep.$vues['erreur']);
                     break;
             } 
 
@@ -144,9 +141,7 @@ class ControllerVisiteur{
         $pseudo = $_POST["txtPseudo"];
         $motDePasse = $_POST["txtMotDePasse"];
 
-        //echo $pseudo;
-        //echo $motDePasse;
-
+        // valide les données rentrées par l'utilisateur
         $dVueEreur = Validation::val_formulaire($pseudo, $motDePasse, $dVueEreur);
 
         if(! empty($dVueEreur)){
@@ -157,8 +152,6 @@ class ControllerVisiteur{
             echo "Page à venir...";
         }
 
-        //echo $this->dataVue["nom"];
-        //echo $this->dataVue["pseudo"];
     }
 
 }

@@ -11,7 +11,7 @@ $dsn='mysql:host=localhost;dbname=php';
 //Vues
 $vues['accueil']='Vues/accueil.php';
 $vues['connexion']='Vues/connexion.php';
-$Vues['erreur']='Vues/erreur.php';
+$vues['erreur']='Vues/erreur.php';
 
 
 ?>
