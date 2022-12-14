@@ -217,12 +217,11 @@ body{
 }
 
 .BoutonContainer{
-    height: 50px;
     width: 350px;
 }
 
 .BoutonBigContainer{
-    min-height: 100px;
+    min-height: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -259,9 +258,24 @@ body{
     padding: 5px;
     min-width: 50px;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .inputAjoutList:hover{
     background-color: aliceblue;
     color:black;
+}
+
+.titreToDoList{
+    font-size: 1.5em;
+    margin: auto;
+}
+
+.containertitreToDoList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+
 }

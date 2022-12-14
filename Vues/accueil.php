@@ -57,7 +57,7 @@
     <div class="BoutonBigContainer">
         <div class="BoutonContainer">
             <form method="post" class="formAjoutListe">
-                <label id="icon" for="name"><i class="fas fa-envelope"></i></label>
+                <label id="icon" for="name"><i class="fas fa-envelope"></label>
                 <input name="nomListe" type="text" id="inputAjout"> 
                 <input type="submit" value="create" class="inputAjoutList">
                 
@@ -75,10 +75,12 @@
             <?php  foreach ($tab_liste as $liste) : ?>  
                     
                 <div class="MyToDoList">
-                    <h1>  <? echo $liste->getNom(); ?> </h1>
+                    <div class="containertitreToDoList">
+                        <h1 class="titreToDoList">  <? echo $liste->getNom(); ?> </h1>
+                    </div>
                     <form action="?idListe=<? echo $liste->getId() ?>" method="post">
-                        <input name="NewTache" type="text" placeholder="Add your new todo">
-                        <input type="submit" value="add">
+                        <input name="NewTache" type="text" placeholder="Add your new todo" id="inputAjout">
+                        <input type="submit" value="add" class="inputAjoutList">
         
                         <!-- action !!!!!!!!!! -->
                         <input type="hidden" name="action" value="ajouterUneTache">  
