@@ -212,10 +212,6 @@ body{
     flex-direction: row;
 }
 
-.listePrivees{
-    pointer-events: none;
-}
-
 .BoutonContainer{
     width: 350px;
 }

@@ -41,21 +41,19 @@ class ControllerVisiteur{
             } 
 
         }catch(PDOException $e){
-            $dVueEreur=["erreur innatendue"];
+            $dVueEreur[] = "Erreur PDO";
+            $dVueEreur[] = $e->getMessage();
             require($rep.$vues["erreur"]);
-            echo $e->getMessage();
             
         }catch(Exception $e){
-            echo $e->getMessage();
+            $dVueEreur[] = $e->getMessage();
+            require($rep.$vues["erreur"]);
         }
         
     }
 
     function afficherAccueil(){
         global $rep,$vues;
-        global $dsn, $user, $pass;
-
-        $data = array();
 
         $model = new Model();
         $tab_tache = $model->get_AllTache();
@@ -66,7 +64,6 @@ class ControllerVisiteur{
 
     function ajouterListe($dVueEreur){  
         global $rep,$vues;
-        global $dsn, $user, $pass;
 
         $model = new Model();
 
@@ -92,7 +89,6 @@ class ControllerVisiteur{
 
     function ajouterTache($dVueEreur){
         global $rep,$vues;
-        global $dsn, $user, $pass;
 
         $model = new Model();
         $model->insertTache($_REQUEST["idListe"], $_POST["NewTache"]);
@@ -105,7 +101,6 @@ class ControllerVisiteur{
 
     function supprimerListe($dVueEreur){
         global $rep,$vues;
-        global $dsn, $user, $pass;
 
         $model = new Model();
         $model->suppListe($_REQUEST["idListe"]);
@@ -118,7 +113,6 @@ class ControllerVisiteur{
 
     function supprimerTache($dVueEreur){
         global $rep,$vues;
-        global $dsn, $user, $pass;
 
         $model = new Model();
         $model->suppTache($_REQUEST["idTache"]);
@@ -148,8 +142,23 @@ class ControllerVisiteur{
             require($rep.$vues['connexion']);
         }
         else{
+            $modelUtilisateur = new ModelUtilisateur();
+            $user = $modelUtilisateur->connexion($pseudo, $motDePasse);
             
-            echo "Page à venir...";
+            if($user == null){
+                $dVueEreur[] = "Mot de passe ou pseudo incorrecte";
+
+                require($rep.$vues['connexion']);
+            }
+            else{
+                // remplir les listes privées
+
+                //afficher liste privées
+                require($rep.$vues['listePrive']);
+            }
+
+            
+            
         }
 
     }

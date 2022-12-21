@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Personne - formulaire</title>
+    <title>Liste Privées</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="Vues/style/accueil.css" rel="stylesheet">
@@ -24,12 +24,11 @@
             </button>
             <ul class="nav__wrapper">
               <li class="nav__item"><a href="/ToDoList">Accueil</a></li>
-              <li class="nav__item"><a class="listePrivees" href="?action=avoirListePrive">Liste privées</a></li>
+              <li class="nav__item"><a class="listePrivees" href="avoirListePrive">Liste privées</a></li>
             </ul>
           </nav>
         </div>
         <div class="site-header__end">
-          <a href="?action=deconnecter" class="lienDeconnection">Deconnection</a>
           <a href="?action=avoirPageConnexion">Sign in</a>
         </div>
       </div>

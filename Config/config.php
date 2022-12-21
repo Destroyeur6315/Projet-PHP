@@ -12,6 +12,7 @@ $dsn='mysql:host=localhost;dbname=php';
 $vues['accueil']='Vues/accueil.php';
 $vues['connexion']='Vues/connexion.php';
 $vues['erreur']='Vues/erreur.php';
+$vues['listePrive'] = 'Vues/listePrive.php';
 
 
 ?>

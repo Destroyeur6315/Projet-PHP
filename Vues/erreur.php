@@ -10,7 +10,6 @@
 <body>
     
     <h2>ERREUR</h2>
-
     <? 
         foreach($dVueEreur as $erreur)
         {
@@ -18,6 +17,11 @@
         }
 
     ?>
+    
+    <br>
+    <br>
+
+    <a href="?action=">Revenir page d'accueil</a>
     
 </body>
 </html>

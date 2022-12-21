@@ -6,7 +6,7 @@ require_once(__DIR__.'/Config/Autoload.php');
 
 Autoload::charger();
 
-$controllerUser = new ControllerVisiteur();
+$frontController = new FrontController();
 
 
 ?>

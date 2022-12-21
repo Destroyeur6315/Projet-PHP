@@ -1,4 +1,5 @@
 <?php
+
 class Connection extends PDO { 
 
 	private $stmt;
@@ -27,4 +28,5 @@ class Connection extends PDO {
 		return $this->stmt->fetchall();
 	}
 }
+
 ?>
