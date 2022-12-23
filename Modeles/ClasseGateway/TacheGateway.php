@@ -1,7 +1,5 @@
 <?php
 
-//require_once(__DIR__.'../ClassesMetiers/connection.php');
-//require_once(__DIR__.'../ClassesMetiers/tache.php');
 
 class TacheGateway {
 
@@ -14,13 +12,14 @@ class TacheGateway {
     //public function deleteTache(String $nomDeLaliste, $Nom){}
     //public function modifDescription(String $nom, String $nomDeLaListe, String $nouvelledescription)
 
-    public function createTache(String $description, String $idListe){
-        $query = "INSERT INTO Tache VALUES(:id, :description, :idListe)";
+    public function createTache(String $description, String $idListe, $termine){
+        $query = "INSERT INTO Tache VALUES(:id, :description, :idListe, :termine)";
 
         $this->con->executeQuery($query, array(
-            ':id' => array(NULL, PDO::PARAM_STR),
+            ':id' => array(NULL, PDO::PARAM_INT),
             ':description' => array($description, PDO::PARAM_STR),
-            ':idListe' => array($idListe, PDO::PARAM_STR)
+            ':idListe' => array($idListe, PDO::PARAM_STR),
+            ':termine' => array($termine, PDO::PARAM_INT)
         ));
 
         return $this->con->getResults();
@@ -43,7 +42,7 @@ class TacheGateway {
         $result = $this->con->getResults();
         $tab_News = [];
         foreach($result as $row){
-            $tab_News[] = new Tache($row["id"], $row["description"], $row["idListe"]);
+            $tab_News[] = new Tache($row["id"], $row["description"], $row["idListe"], $row["termine"]);
         }
 
         return $tab_News;
@@ -65,6 +64,17 @@ class TacheGateway {
 
     public function getCon(){
         return $this->con;
+    }
+
+    public function modifTache($idTache){
+        $query = "UPDATE tache SET termine=:termine WHERE id=:idTache";
+        $this->con->executeQuery($query, array(
+            ':termine' => array(1, PDO::PARAM_INT),
+            ':idTache' => array($idTache, PDO::PARAM_INT),
+        ));  
+
+        $result = $this->con->getResults();
+        return $result;
     }
     
 }

@@ -5,27 +5,25 @@
 
 class Model{
 
-    public function __construct(){
-        
-    }
+    public function __construct(){}
+
 
     // fonction pour les tâches
-
-    // obtenir toutes les tâches
     public function get_AllTache(){
         global $dsn, $user, $pass;
 
-        $Taches = new TacheGateway(New Connection($dsn, $user, $pass));
+        $Taches = new TacheGateway(New Connection($dsn, $user, $pass));     
         $tab_taches = $Taches->getAll();
-
+    
         return $tab_taches;
     }
 
     public function insertTache(String $idListe, String $description){
         global $dsn, $user, $pass;
+        $termine = 0;
 
         $Taches = new TacheGateway(New Connection($dsn, $user, $pass));
-        $result = $Taches->createTache($description, $idListe);
+        $result = $Taches->createTache($description, $idListe, $termine);
 
         return $result;
     }
@@ -37,15 +35,22 @@ class Model{
         $result = $Taches->deleteTache($idTache);
     }
 
+    public function modifTermineTache(String $idTache){
+        global $dsn, $user, $pass;
+
+        $Taches = new TacheGateway(New Connection($dsn, $user, $pass));
+        $result = $Taches->modifTache($idTache);
+
+        return $result;
+    }
+
+
     // fonction pour les listes
-
-    // obtenir toutes les listes
-
-    public function get_AllListe(){
+    public function get_AllListe($possesseur){
         global $dsn, $user, $pass;
 
         $Liste = new ListeGateway(New Connection($dsn, $user, $pass));
-        $result = $Liste->getAll();
+        $result = $Liste->getAll($possesseur);
 
         return $result;
     }
@@ -59,11 +64,11 @@ class Model{
 
     }
 
-    public function insertListe($nomListe){
+    public function insertListe($nomListe, $possesseur){
         global $dsn, $user, $pass;
 
         $Liste = new ListeGateway(New Connection($dsn, $user, $pass));
-        $result = $Liste->createNewListe($nomListe);
+        $result = $Liste->createNewListe($nomListe, $possesseur);
 
         return $result;
     }

@@ -3,11 +3,12 @@
 class Liste{
     private $id;
     private $nom;
-    private $listeDeTaches = [];
+    private $User;
 
-    public function __construct(int $id, String $nom){
+    public function __construct(int $id, String $nom, String $User){
         $this->nom = $nom;
         $this->id = $id;
+        $this->User = $User;
     }
 
     public function getNom() : String {
@@ -18,8 +19,8 @@ class Liste{
         return $this->id;
     }
 
-    public function getListe() : array {
-        return $this->listeDeTaches;
+    public function getIdUser() : String {
+        return $this->User;
     }
 }
 

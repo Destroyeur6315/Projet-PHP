@@ -6,30 +6,13 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
     font:inherit;
     vertical-align:baseline;
 }
+
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
     display:block;
 }
 
-body{
-    line-height:1;
-}
-
 ol,ul{
     list-style:none;
-}
-
-blockquote,q{
-    quotes:none;
-}
-
-blockquote:before,blockquote:after,q:before,q:after{
-    content:'';
-    content:none
-}
-
-table{
-    border-collapse:collapse;
-    border-spacing:0;
 }
 
 @import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap";.wrapper{
@@ -39,6 +22,7 @@ table{
     margin-left:auto;
     margin-right:auto;
 }
+
 *,*:before,*:after{
     box-sizing:border-box;
 }
@@ -238,7 +222,7 @@ body{
 }
 
 #inputAjout{
-    padding: 7px;
+    padding: 13px;
     margin: 0;
     outline: none;
     font-family: Roboto, Arial, sans-serif;
@@ -255,6 +239,7 @@ body{
     min-width: 50px;
     border-radius: 5px;
     margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 .inputAjoutList:hover{
@@ -275,3 +260,8 @@ body{
     padding-bottom: 10px;
 
 }
+
+.lienDeconnection{
+    padding-right: 15px;
+}
+

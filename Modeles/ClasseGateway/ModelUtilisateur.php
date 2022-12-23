@@ -4,13 +4,9 @@ class ModelUtilisateur{
 
     public function isUser(){
         if(isset($_SESSION["login"]) && isset($_SESSION["role"])){
-            //$login = Nettoyer::nettoyer_string($_SESSION["login"]);
-            //$role = Nettoyer::nettoyer_string($_SESSION["login"]);
+            $login = Nettoyer::nettoyer_string($_SESSION["login"]);
+            $role = Nettoyer::nettoyer_string($_SESSION["role"]);
             
-            // Penser à nettoyer le login et le role
-            $login = filter_var($_SESSION["login"], FILTER_DEFAULT); 
-            $role = filter_var($_SESSION["role"], FILTER_DEFAULT); 
-
             return new Utilisateur($login);
         }
         else{
@@ -27,7 +23,9 @@ class ModelUtilisateur{
     public function connexion($login, $motDePasse){
             global $dsn, $user, $pass;
 
-            // Appelle de gateway si le login existe bien et si mot de passe est le bon
+            $login = Nettoyer::nettoyer_string($login);
+            $motDePasse = Nettoyer::nettoyer_string($motDePasse);
+
             $userGateway = new UtilisateurGateway(new Connection($dsn, $user, $pass));
             $result = $userGateway->getUtilisateur($login, $motDePasse);
 
@@ -38,13 +36,13 @@ class ModelUtilisateur{
             $_SESSION['role'] = 'utilisateur';
             $_SESSION['login'] = $login;
 
-            $user = '';
+            $utilisateur = '';
 
             foreach($result as $value){
-                $user = new Utilisateur($value["pseudo"]);
+                $utilisateur = new Utilisateur($value["pseudo"]);
             }
 
-            return $user;
+            return $utilisateur;
     }
 
 

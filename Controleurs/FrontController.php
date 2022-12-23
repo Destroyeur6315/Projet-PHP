@@ -9,7 +9,9 @@ class FrontController{
 
         session_start();
 
-        $listeActon_Utilisateur = array('avoirListePrive', 'deconnecter', 'ajouterListePrive', 'supprimerTachePrive');
+        $listeActon_Utilisateur = array('avoirListePrive', 'deconnecter', 'ajouterUneListePrive', 'supprimerUneListePrive', 
+            'ajouterUneTachePrive', 'supprimerUneTachePrive', 'tachePriveChecked');
+
         $modelUtilisateur = new ModelUtilisateur();
 
         try{
@@ -40,16 +42,8 @@ class FrontController{
             $dVueEreur[] = $e->getMessage();
             require($rep.$vues["erreur"]);
         }
-
-
     }
-
-
-
 }
-
-
-
 
 
 

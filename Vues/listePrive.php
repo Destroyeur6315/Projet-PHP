@@ -15,7 +15,7 @@
     <header class="site-header">
       <div class="wrapper site-header__wrapper">
         <div class="site-header__start">
-          <a href="#" class="brand">MyToDoList</a>
+          <a href="#" class="brand">MyToDoList (privé) </a>
         </div>
         <div class="site-header__middle">
           <nav class="nav">
@@ -24,12 +24,12 @@
             </button>
             <ul class="nav__wrapper">
               <li class="nav__item"><a href="/ToDoList">Accueil</a></li>
-              <li class="nav__item"><a class="listePrivees" href="avoirListePrive">Liste privées</a></li>
+              <li class="nav__item"><a class="listePrivees" href="">Listes privées</a></li>
             </ul>
           </nav>
         </div>
         <div class="site-header__end">
-          <a href="?action=avoirPageConnexion">Sign in</a>
+            <a href="?action=deconnecter" class="lienDeconnection">Deconnection</a>
         </div>
       </div>
     </header>
@@ -62,7 +62,7 @@
                 <input type="submit" value="create" class="inputAjoutList">
                 
                 <!-- action !!!!!!!!!! -->
-                <input type="hidden" name="action" value="ajouterUneListe">    
+                <input type="hidden" name="action" value="ajouterUneListePrive">    
             </form>
         </div>
     </div>
@@ -83,36 +83,57 @@
                         <input type="submit" value="add" class="inputAjoutList">
         
                         <!-- action !!!!!!!!!! -->
-                        <input type="hidden" name="action" value="ajouterUneTache">  
+                        <input type="hidden" name="action" value="ajouterUneTachePrive">  
                     </form>
                     
                     <ul class="todoList">
 
-                        <?php  foreach ($tab_tache as $tache) : 
-                                if($tache->getIdListe() == $liste->getId())
-                                {
-                                    ?>
-                                    <form action="?idTache=<? echo $tache->getId() ?>" method="post">
-                                        <li>   
-                                            <? echo $tache->getDescription(); ?> 
-                                            <input type="submit" value="X">
-        
-                                            <!-- action !!!!!!!!!! -->
-                                            <input type="hidden" name="action" value="supprimerUneTache"> 
+                        <?php  foreach ($tab_tache as $tache) : ?>
+                                <?    if($tache->getIdListe() == $liste->getId() && ! $tache->getTermine())
+                                    {
+                                        ?>
+                                        <li> 
+                                            <form action="?idTache=<? echo $tache->getId() ?>" method="post">
+                                                 <input type="checkbox" name="valide" id="checkboxInput" name="cb1">
+                                                 <label id="checkboxLabel" for="cb1"> <? echo $tache->getDescription(); 
+                                                    ?> </label>
+                                                 <input type="submit" value="X" class="boutonChecked">
+                                                
+                                                 <!-- action !!!!!!!!!! -->
+                                                <input type="hidden" name="action" value="tachePriveChecked"> 
+                                            </form> 
                                         </li>
-                                    </form> 
-                                    
-                                    <?php
-                                }                       
+
+                                        <form action="?idTache=<? echo $tache->getId() ?>" method="post">
+                                                <input type="submit" value="X" class="boutonTache">
+                                                <!-- action !!!!!!!!!! -->
+                                                <input type="hidden" name="action" value="supprimerUneTachePrive"> 
+                                        </form> 
+
+                                                                                                                       
+                        <?php   }                       
+                        endforeach; 
+                        echo "<br>"; 
+
+                        foreach($tab_tache as $tache) : ?>
+                            <? if($tache->getIdListe() == $liste->getId() && $tache->getTermine()){ 
+                                
+                                echo "tache ".$tache->getDescription()." terminée";  
+                                echo "<br>";                    
+
+                           }                       
                         endforeach; ?>
 
+
                     </ul>
-                    <form action="?idListe=<? echo $liste->getId() ?>" method="post"> 
-                    <input type="submit" value="delete">
-        
-                    <!-- action !!!!!!!!!! -->
-                    <input type="hidden" name="action" value="supprimerUneListe"> 
-                    </form>
+                    <div class="footerToDoList">
+                        <form action="?idListe=<? echo $liste->getId() ?>" method="post"> 
+                        <input class="inputAjoutList" type="submit" value="delete">
+            
+                        <!-- action !!!!!!!!!! -->
+                        <input type="hidden" name="action" value="supprimerUneListePrive"> 
+                        </form>
+                    </div>
                 </div>
             <?php endforeach; ?>   
         

@@ -8,27 +8,31 @@ class ListeGateway {
         $this->con = $con;
     }  
 
-   
-    public function getAll(){
-        $query = "SELECT * FROM liste";
-        $this->con->executeQuery($query);  
+    public function getAll($possesseur){
+        $query = "SELECT * FROM liste WHERE possesseur=:possesseur";
+
+        $this->con->executeQuery($query, array(
+            ':possesseur' => array($possesseur, PDO::PARAM_STR)
+        ));  
 
         $result = $this->con->getResults();
+
         $tab_Liste = [];
         foreach($result as $row){
-            $tab_Liste[] = new Liste($row["id"], $row["nom"]);
+            $tab_Liste[] = new Liste($row["id"], $row["nom"], $row["possesseur"]);
         }
 
         return $tab_Liste;
     }
      
 
-    public function createNewListe($nom){
-        $query = "INSERT INTO Liste VALUES(:id, :nom)";
+    public function createNewListe($nom, $possesseur){
+        $query = "INSERT INTO Liste VALUES(:id, :nom, :user)";
 
         $this->con->executeQuery($query, array(
             ':id' => array(NULL, PDO::PARAM_STR),
-            ':nom' => array($nom, PDO::PARAM_STR)
+            ':nom' => array($nom, PDO::PARAM_STR),
+            ':user' => array($possesseur, PDO::PARAM_STR),
         ));
 
         return $this->con->getResults();

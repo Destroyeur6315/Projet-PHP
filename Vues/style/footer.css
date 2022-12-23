@@ -183,13 +183,10 @@
     width: 15%;
 }
 
-.PageBody{
-    min-height: 600px;
-}
-
 .MyContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #26272b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #26272b;
+  height: auto;
 }

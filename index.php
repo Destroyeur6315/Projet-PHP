@@ -8,5 +8,4 @@ Autoload::charger();
 
 $frontController = new FrontController();
 
-
 ?>

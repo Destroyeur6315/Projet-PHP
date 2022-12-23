@@ -6,10 +6,10 @@
 </head>
 <body>
   
-    <header class="site-header">    
+    <header class="site-header">
       <div class="wrapper site-header__wrapper">
         <div class="site-header__start">
-          <a href="#" class="brand">MyToDoList</a>
+          <a href="#" class="brand">MyToDoList (public) </a>
         </div>
         <div class="site-header__middle">
           <nav class="nav">
@@ -18,12 +18,12 @@
             </button>
             <ul class="nav__wrapper">
               <li class="nav__item"><a href="/ToDoList">Accueil</a></li>
-              <li class="nav__item"><a href="#">Liste privées</a></li>
+              <li class="nav__item"><a class="listePrivees" href="?action=avoirListePrive">Listes privées</a></li>
             </ul>
           </nav>
         </div>
         <div class="site-header__end">
-          <a href="#">Sign in</a>
+          <a href="?action=avoirPageConnexion">Sign in</a>
         </div>
       </div>
     </header>

@@ -29,10 +29,10 @@ class Validation{
 
     static function val_ListeTache($chaine, $dataErreur){
         if(! isset($chaine) || $chaine==""){
-            $dataErreur[] = "Veuillez référencé un nom à la liste";
+            $dataErreur[] = "Veuillez référencé un nom";
         }
-        if(! preg_match('/^[a-zA-Z0-9]{6,12}$/', $chaine)){
-            $dataErreur[] = "Veuillez rentrer un pseudo conforme (chiffre et lettre uniquement)";
+        if(! preg_match('/^[a-zA-Z0-9]{3,15}$/', $chaine)){
+            $dataErreur[] = "Veuillez rentrer un nom conforme (chiffre et lettre uniquement)";
         }
 
         return $dataErreur;
